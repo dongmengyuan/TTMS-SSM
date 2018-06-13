@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ttms.dao.PlayMapper" >
+  <resultMap id="BaseResultMap" type="ttms.model.Play" >
+    <id column="play_id" property="playId" jdbcType="INTEGER" />
+    <result column="play_type_id" property="playTypeId" jdbcType="INTEGER" />
+    <result column="play_lang_id" property="playLangId" jdbcType="INTEGER" />
+    <result column="play_name" property="playName" jdbcType="VARCHAR" />
+    <result column="play_introduction" property="playIntroduction" jdbcType="VARCHAR" />
+    <result column="play_image" property="playImage" jdbcType="VARCHAR" />
+    <result column="play_length" property="playLength" jdbcType="INTEGER" />
+    <result column="play_ticket_price" property="playTicketPrice" jdbcType="DECIMAL" />
+    <result column="play_status" property="playStatus" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    play_id, play_type_id, play_lang_id, play_name, play_introduction, play_image, play_length, 
+    play_ticket_price, play_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="ttms.model.PlayExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from play
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from play
+    where play_id = #{playId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from play
+    where play_id = #{playId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="ttms.model.PlayExample" >
+    delete from play
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ttms.model.Play" >
+    insert into play (play_id, play_type_id, play_lang_id, 
+      play_name, play_introduction, play_image, 
+      play_length, play_ticket_price, play_status
+      )
+    values (#{playId,jdbcType=INTEGER}, #{playTypeId,jdbcType=INTEGER}, #{playLangId,jdbcType=INTEGER}, 
+      #{playName,jdbcType=VARCHAR}, #{playIntroduction,jdbcType=VARCHAR}, #{playImage,jdbcType=VARCHAR}, 
+      #{playLength,jdbcType=INTEGER}, #{playTicketPrice,jdbcType=DECIMAL}, #{playStatus,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ttms.model.Play" >
+    insert into play
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="playId != null" >
+        play_id,
+      </if>
+      <if test="playTypeId != null" >
+        play_type_id,
+      </if>
+      <if test="playLangId != null" >
+        play_lang_id,
+      </if>
+      <if test="playName != null" >
+        play_name,
+      </if>
+      <if test="playIntroduction != null" >
+        play_introduction,
+      </if>
+      <if test="playImage != null" >
+        play_image,
+      </if>
+      <if test="playLength != null" >
+        play_length,
+      </if>
+      <if test="playTicketPrice != null" >
+        play_ticket_price,
+      </if>
+      <if test="playStatus != null" >
+        play_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="playId != null" >
+        #{playId,jdbcType=INTEGER},
+      </if>
+      <if test="playTypeId != null" >
+        #{playTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="playLangId != null" >
+        #{playLangId,jdbcType=INTEGER},
+      </if>
+      <if test="playName != null" >
+        #{playName,jdbcType=VARCHAR},
+      </if>
+      <if test="playIntroduction != null" >
+        #{playIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="playImage != null" >
+        #{playImage,jdbcType=VARCHAR},
+      </if>
+      <if test="playLength != null" >
+        #{playLength,jdbcType=INTEGER},
+      </if>
+      <if test="playTicketPrice != null" >
+        #{playTicketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="playStatus != null" >
+        #{playStatus,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ttms.model.PlayExample" resultType="java.lang.Integer" >
+    select count(*) from play
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update play
+    <set >
+      <if test="record.playId != null" >
+        play_id = #{record.playId,jdbcType=INTEGER},
+      </if>
+      <if test="record.playTypeId != null" >
+        play_type_id = #{record.playTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.playLangId != null" >
+        play_lang_id = #{record.playLangId,jdbcType=INTEGER},
+      </if>
+      <if test="record.playName != null" >
+        play_name = #{record.playName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playIntroduction != null" >
+        play_introduction = #{record.playIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playImage != null" >
+        play_image = #{record.playImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playLength != null" >
+        play_length = #{record.playLength,jdbcType=INTEGER},
+      </if>
+      <if test="record.playTicketPrice != null" >
+        play_ticket_price = #{record.playTicketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.playStatus != null" >
+        play_status = #{record.playStatus,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update play
+    set play_id = #{record.playId,jdbcType=INTEGER},
+      play_type_id = #{record.playTypeId,jdbcType=INTEGER},
+      play_lang_id = #{record.playLangId,jdbcType=INTEGER},
+      play_name = #{record.playName,jdbcType=VARCHAR},
+      play_introduction = #{record.playIntroduction,jdbcType=VARCHAR},
+      play_image = #{record.playImage,jdbcType=VARCHAR},
+      play_length = #{record.playLength,jdbcType=INTEGER},
+      play_ticket_price = #{record.playTicketPrice,jdbcType=DECIMAL},
+      play_status = #{record.playStatus,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ttms.model.Play" >
+    update play
+    <set >
+      <if test="playTypeId != null" >
+        play_type_id = #{playTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="playLangId != null" >
+        play_lang_id = #{playLangId,jdbcType=INTEGER},
+      </if>
+      <if test="playName != null" >
+        play_name = #{playName,jdbcType=VARCHAR},
+      </if>
+      <if test="playIntroduction != null" >
+        play_introduction = #{playIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="playImage != null" >
+        play_image = #{playImage,jdbcType=VARCHAR},
+      </if>
+      <if test="playLength != null" >
+        play_length = #{playLength,jdbcType=INTEGER},
+      </if>
+      <if test="playTicketPrice != null" >
+        play_ticket_price = #{playTicketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="playStatus != null" >
+        play_status = #{playStatus,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where play_id = #{playId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ttms.model.Play" >
+    update play
+    set play_type_id = #{playTypeId,jdbcType=INTEGER},
+      play_lang_id = #{playLangId,jdbcType=INTEGER},
+      play_name = #{playName,jdbcType=VARCHAR},
+      play_introduction = #{playIntroduction,jdbcType=VARCHAR},
+      play_image = #{playImage,jdbcType=VARCHAR},
+      play_length = #{playLength,jdbcType=INTEGER},
+      play_ticket_price = #{playTicketPrice,jdbcType=DECIMAL},
+      play_status = #{playStatus,jdbcType=SMALLINT}
+    where play_id = #{playId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ttms.dao.SaleItemMapper" >
+  <resultMap id="BaseResultMap" type="ttms.model.SaleItem" >
+    <id column="sale_item_id" property="saleItemId" jdbcType="BIGINT" />
+    <result column="ticket_id" property="ticketId" jdbcType="BIGINT" />
+    <result column="sale_ID" property="saleId" jdbcType="BIGINT" />
+    <result column="sale_item_price" property="saleItemPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sale_item_id, ticket_id, sale_ID, sale_item_price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="ttms.model.SaleItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sale_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sale_item
+    where sale_item_id = #{saleItemId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sale_item
+    where sale_item_id = #{saleItemId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="ttms.model.SaleItemExample" >
+    delete from sale_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ttms.model.SaleItem" >
+    insert into sale_item (sale_item_id, ticket_id, sale_ID, 
+      sale_item_price)
+    values (#{saleItemId,jdbcType=BIGINT}, #{ticketId,jdbcType=BIGINT}, #{saleId,jdbcType=BIGINT}, 
+      #{saleItemPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="ttms.model.SaleItem" >
+    insert into sale_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="saleItemId != null" >
+        sale_item_id,
+      </if>
+      <if test="ticketId != null" >
+        ticket_id,
+      </if>
+      <if test="saleId != null" >
+        sale_ID,
+      </if>
+      <if test="saleItemPrice != null" >
+        sale_item_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="saleItemId != null" >
+        #{saleItemId,jdbcType=BIGINT},
+      </if>
+      <if test="ticketId != null" >
+        #{ticketId,jdbcType=BIGINT},
+      </if>
+      <if test="saleId != null" >
+        #{saleId,jdbcType=BIGINT},
+      </if>
+      <if test="saleItemPrice != null" >
+        #{saleItemPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ttms.model.SaleItemExample" resultType="java.lang.Integer" >
+    select count(*) from sale_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sale_item
+    <set >
+      <if test="record.saleItemId != null" >
+        sale_item_id = #{record.saleItemId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ticketId != null" >
+        ticket_id = #{record.ticketId,jdbcType=BIGINT},
+      </if>
+      <if test="record.saleId != null" >
+        sale_ID = #{record.saleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.saleItemPrice != null" >
+        sale_item_price = #{record.saleItemPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sale_item
+    set sale_item_id = #{record.saleItemId,jdbcType=BIGINT},
+      ticket_id = #{record.ticketId,jdbcType=BIGINT},
+      sale_ID = #{record.saleId,jdbcType=BIGINT},
+      sale_item_price = #{record.saleItemPrice,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ttms.model.SaleItem" >
+    update sale_item
+    <set >
+      <if test="ticketId != null" >
+        ticket_id = #{ticketId,jdbcType=BIGINT},
+      </if>
+      <if test="saleId != null" >
+        sale_ID = #{saleId,jdbcType=BIGINT},
+      </if>
+      <if test="saleItemPrice != null" >
+        sale_item_price = #{saleItemPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where sale_item_id = #{saleItemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ttms.model.SaleItem" >
+    update sale_item
+    set ticket_id = #{ticketId,jdbcType=BIGINT},
+      sale_ID = #{saleId,jdbcType=BIGINT},
+      sale_item_price = #{saleItemPrice,jdbcType=DECIMAL}
+    where sale_item_id = #{saleItemId,jdbcType=BIGINT}
+  </update>
+</mapper>

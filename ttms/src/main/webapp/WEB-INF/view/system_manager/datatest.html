@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Bootstrap/bs.css">
+    <link rel="stylesheet" href="css/manage.css">
+    <link rel="stylesheet" href="css/userInfomation.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="demo/demo.css" rel="stylesheet" type="text/css" />
+    <script src="scripts/boot.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js"></script>
+    <!--<style>
+        div{display: inline}
+    </style>
+    --><title>Sales statistics</title>
+</head>
+<body>
+<div id="header">
+    <a href="./login.html" id="link">&nbsp;退出</a>
+    <span>系统管理员</span>
+</div>
+<div class="image">
+    <img src="image/sky.jpg" id="image">
+</div>
+<!--<style>-->
+    <!--.col-md-2{display: inline}-->
+<!--</style>-->
+<p class="title1">FZN影院管理系统</p>
+<div class="container">
+    <div class="row">
+        <input type="button" value="按销售员统计" onClick="window.open('datatest.html','_top')"/>
+        <input type="button" value="近七天" onClick="window.open('weekdata.html','_top')">
+        <input type="button" value="近一个月内销售金额变化"onClick="window.open('monthdata.html','_top')">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked nav-inverse" id="left">
+                <li role="presentation" class="active"><a href="./employee.html">员工管理</a></li>
+                <li role="presentation"><a href="./stdio.html">演出厅管理</a></li>
+                <li role="presentation"><a href="./seat.html">座位管理</a></li>
+                <li role="presentation"><a href="./user.html">登录用户管理</a></li>
+                <li role="presentation"><a href="./userInformation.html">个人信息</a></li>
+                <li role="presentation"><a href="./datatest.html">销售额统计</a></li>
+            </ul>
+
+        </div>
+        <div class="col-md-2" id="main" style="height:400px;width: 600px;float:left;margin-top:5%"></div>
+    </div>
+
+</div>
+  <!--<input type="button" value="OpenChart" onclick="showChartWindow()" style="left: 30px;padding:30px " />-->
+
+   <!-- <div class="div" id="main" style="height:300px;width:400px;left: 30%;"></div>
+-->
+
+
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '各销售员销售情况'
+        },
+        tooltip: {},
+        legend: {
+            data:['销售金额']
+        },
+        xAxis: {
+            data: ["售票员1号","售票员2号","售票员3号","售票员4号","售票员5号","售票员6号"]
+        },
+        yAxis: {
+            max:3000,
+            interval: 200,
+        },
+        series: [{
+            name: '销量',
+            type: 'bar',
+
+            data: [500, 1000, 1500, 700, 600, 800]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+<script src="jquery/jq.js"></script>
+<script src="jquery/bootstrap.min.js"></script>
+<script src="javascript/employee.js"></script>
+<script src="javascript/match.js"></script>
+</body>
+</html>
