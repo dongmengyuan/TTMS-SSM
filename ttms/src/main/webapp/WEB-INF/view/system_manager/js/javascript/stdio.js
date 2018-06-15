@@ -1,4 +1,3 @@
-'use strict';
 let array = {};
 function find() {
     let table = document.getElementById('stdio');
@@ -39,74 +38,6 @@ function find() {
 
 }
 
-// function checkName(name) {
-//     let check = /^[\u4e00-\u9fa5]{5,9}$/;
-//     let nam = document.getElementById('name').value;
-//     if (check.test(nam)) {
-//         document.getElementById('1').innerText = '';
-//         return true;
-//     }
-//     else {
-//         document.getElementById('1').innerText = '请输入5～9个汉字！';
-//         document.getElementById('name').value = '';
-//         return false;
-//     }
-// }
-//
-// function checkType(type) {
-//     let check = /^[\u4e00-\u9fa5]{1,2}$/;
-//     let nam = document.getElementById('type').value;
-//     if (check.test(nam)) {
-//         document.getElementById('2').innerText = '';
-//         return true;
-//     }
-//     else {
-//         document.getElementById('2').innerText = '请输入演出厅类型！';
-//         document.getElementById('type').value = '';
-//         return false;
-//     }
-// }
-//
-// function checkRow(row) {
-//     let r = document.getElementById('row').value;
-//     if (r>0&&r<=20) {
-//         document.getElementById('3').innerText = '';
-//         return true;
-//     }
-//     else {
-//         document.getElementById('3').innerText = '行数不为0且不超过20！';
-//         document.getElementById('row').value = '';
-//         return false;
-//     }
-// }
-//
-// function checkCol(col) {
-//     let c = document.getElementById('col').value;
-//     if (c>0&&c<=20) {
-//         document.getElementById('4').innerText = '';
-//         return true;
-//     }
-//     else {
-//         document.getElementById('4').innerText = '列数不为0且不超过20！';
-//         document.getElementById('col').value = '';
-//         return false;
-//     }
-// }
-//
-// function checkStatus(status) {
-//     let check = /^[\u4e00-\u9fa5]{2,3}$/;
-//     let s = document.getElementById('status').value;
-//     if (check.test(s)) {
-//         document.getElementById('5').innerText = '';
-//         return true;
-//     }
-//     else {
-//         document.getElementById('5').innerText = '可用或不可用！';
-//         document.getElementById('status').value = '';
-//         return false;
-//     }
-// }
-
 function checkAll() {
     let add = document.getElementById('add');
     if (checkName() && checkType() && checkRow() && checkCol() && checkStatus()) {
@@ -145,10 +76,6 @@ function save(obj) {
     }
 
 }
-
-// function del(obj) {
-//     (array.table).deleteRow(array.num);
-// }
 
 function dels(obj) {
     //(array.table).deleteRow(array.num);
@@ -189,3 +116,7 @@ function add() {
     }
 }
 
+function manage(){
+    let studioId = array.info[0];
+    window.location.href = 'http://localhost:8080/showSeat/'+studioId;
+}

@@ -7,6 +7,10 @@ import ttms.model.EmployeeExample;
 import java.util.List;
 
 public interface EmployeeMapper {
+
+
+    Employee selectByNo(@Param("empNo") String empNo);
+
     int countByExample(EmployeeExample example);
 
     int deleteByExample(EmployeeExample example);
@@ -20,6 +24,8 @@ public interface EmployeeMapper {
     List<Employee> selectByExample(EmployeeExample example);
 
     Employee selectByPrimaryKey(Integer empId);
+
+//    Employee selectByEmpNo(String empNo);
 
     int updateByExampleSelective(@Param("record") Employee record, @Param("example") EmployeeExample example);
 

@@ -1,6 +1,7 @@
 package ttms.service;
 
 
+import ttms.model.Employee;
 import ttms.model.User;
 
 /**
@@ -10,5 +11,7 @@ import ttms.model.User;
 public interface LoginService {
 
     public User getUserByNoAndPass(String id,String password);
+
+    public Employee getUserByNo(String no);
 
 }

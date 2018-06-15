@@ -102,6 +102,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="ttms.model.Studio" >
+    <selectKey keyProperty="studioId" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into studio (studio_id, studio_name, studio_row_count, 
       studio_col_count, studio_introduction, studio_flag
       )
@@ -110,7 +113,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="ttms.model.Studio" >
-    <selectKey keyProperty="studioId" resultType="int">
+    <selectKey keyProperty="studioId" resultType="int" order="AFTER">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into studio

@@ -87,6 +87,10 @@
       limit #{start},#{rows}
     </if>
   </select>
+  <select id="selectByNo" resultType="ttms.model.Employee">
+    select * from employee where emp_no = #{empNo}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />

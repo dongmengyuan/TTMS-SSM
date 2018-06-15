@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Bootstrap/bs.css">
+    <link rel="stylesheet" href="css/manage.css">
+    <link rel="stylesheet" href="css/hide.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <title>sale_schedule</title>
+    <style>
+        input[type='radio'] {
+            margin: 0 3px 0 16px;
+            font-size: 15px;
+            vertical-align: middle;
+        }
+        select {
+            width: 60px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <a href="./login.html" id="link">&nbsp;退出</a>
+    <span>经理</span>
+</div>
+<div class="image">
+    <img src="image/sky.jpg" id="image">
+</div>
+<p class="title">JerryMouse售票管理</p>
+<div id="center">
+    <input type="text" class="search" placeholder="search">
+    <button class="fa fa-search"></button>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1">
+            <div id="ww">
+                <table class="table table-hover" id="schedule" onclick="find(this)">
+                    <thead>
+                    <tr>
+                        <th style='text-align: center;width:13%;'>id</th>
+                        <th style='text-align: center;width:13%;'>剧目</th>
+                        <th style='text-align: center;width:17%;'>演出厅</th>
+                        <th style='text-align: center;width:13%;'>演出时间</th>
+                        <th style='text-align: center;width:13%;'>票价</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>复仇者联盟</td>
+                        <td>1号演出厅</td>
+                        <td>2017-08-11T08:00</td>
+                        <td>35.00</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>复仇者联盟</td>
+                        <td>1号演出厅</td>
+                        <td>2017-08-11T08:00</td>
+                        <td>35.00</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>复仇者联盟</td>
+                        <td>1号演出厅</td>
+                        <td>2017-08-11T08:00</td>
+                        <td>35.00</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>复仇者联盟</td>
+                        <td>1号演出厅</td>
+                        <td>2017-08-11T08:00</td>
+                        <td>35.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="btns">
+                    <button class="btn btn-primary" style="float: right;margin: 5px;">确认
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="jquery/jq.js"></script>
+<script src="jquery/bootstrap.min.js"></script>
+<script src="javascript/sale_schedule.js"></script>
+</body>
+</html>

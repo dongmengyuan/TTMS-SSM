@@ -50,7 +50,7 @@ public class PlayController {
     @RequestMapping("/updatePlay")
     public String updatePlay(Play play) {
         playService.updatePlay(play);
-        return "play";
+        return "redirect:/showPlay";
     }
 
     @RequestMapping("/selectType")

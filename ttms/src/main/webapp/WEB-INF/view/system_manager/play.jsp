@@ -25,18 +25,17 @@
     <img src="image/sky.jpg" id="image">
 </div>
 <p class="title">JerryMouse影院管理系统</p>
-<div id="center">
-    <input type="search" class="search" placeholder="search">
-    <button class="fa fa-search"></button>
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-2">
             <ul class="nav nav-pills nav-stacked nav-inverse" id="left">
-                <li role="presentation"><a href="show/Play">剧目管理</a></li>
-                <li role="presentation"><a href="show/Schedule">演出计划管理</a></li>
-                <li role="presentation"><a href="show/Seal">销售额管理</a></li>
-                <li role="presentation"><a href="show/UserInformation">个人信息</a></li>
+                <li role="presentation" class="active"><a href="showEmployee">员工管理</a></li>
+                <li role="presentation" class="active"><a href="showPlay">剧目管理</a></li>
+                <li role="presentation"><a href="/showStudio">演出厅管理</a></li>
+                <li role="presentation"><a href="/showSchedule">演出计划管理</a></li>
+                <li role="presentation"><a href="/showUser">用户管理</a></li>
+                <li role="presentation"><a href="/showuserInformation">个人信息</a></li>
+                <li role="presentation"><a href="/showData">销售额统计</a></li>
             </ul>
         </div>
         <div class="col-md-offset-2">
@@ -59,8 +58,38 @@
                         <tr>
                             <td>${play.playId}</td>
                             <td>${play.playName}</td>
-                            <td>${play.playTypeId}</td>
-                            <td>${play.playLangId}</td>
+                            <td><c:if test = "${play.playTypeId == 5}">
+                                    古装剧
+                                </c:if>
+                                <c:if test = "${play.playTypeId == 6}">
+                                    动漫片
+                                </c:if>
+                                <c:if test = "${play.playTypeId == 7}">
+                                    生活剧
+                                </c:if>
+                                <c:if test = "${play.playTypeId == 8}">
+                                    恐怖片
+                                </c:if>
+                                <c:if test = "${play.playTypeId == 9}">
+                                    战争片
+                                </c:if>
+                                <c:if test = "${play.playTypeId == 10}">
+                                    科幻片
+                                </c:if>
+                                <c:if test = "${play.playTypeId < 5 or play.playTypeId > 10}">
+                                    未知类型
+                                </c:if>
+                            </td>
+                            <td><c:if test = "${play.playLangId == 11}">
+                                国语
+                                </c:if>
+                                <c:if test = "${play.playLangId == 12}">
+                                    英语
+                                </c:if>
+                                <c:if test = "${play.playLangId < 11 or play.playLangId > 12}">
+                                    未知语言
+                                </c:if>
+                            </td>
                             <td>${play.playLength}</td>
                             <td>${play.playIntroduction}</td>
                             <td>${play.playTicketPrice}</td>
@@ -164,17 +193,18 @@
                             <div class="modal-body">
                                 <form action="/updatePlay" method="post" class="form-horizontal" role="form">
 
+                                    <input type="hidden" name="playId" class="form-control" id="id1"/>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">名称:</label>
                                         <div class="col-sm-8">
-                                            <label><input type="text" class="form-control" id="nam"
+                                            <label><input name="playName" type="text" class="form-control" id="nam"
                                             ></label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">类型:</label>
                                         <div class="col-sm-8">
-                                            <select name="editPtype" id="editPtype" class="form-control">
+                                            <select name="playTypeId" id="editPtype" class="form-control">
 
                                             </select>
                                         </div>
@@ -182,29 +212,29 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">语言:</label>
                                         <div class="col-sm-8">
-                                            <select name="editPlang" id="editPlang" class="form-control">
+                                            <select name="playLangId" id="editPlang" class="form-control">
 
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">时长:</label>
+                                        <label class="col-sm-3 control-label" >时长:</label>
                                         <div class="col-sm-8">
-                                            <select name="long1" id="long1" class="form-control">
+                                            <select name="playLength" id="long1" class="form-control">
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">简介:</label>
                                         <div class="col-sm-8">
-                                            <label><textarea rows="5" class="form-control" id="intro1"></textarea>
+                                            <label><textarea name="playIntroduction" rows="5" class="form-control" id="intro1"></textarea>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">票价:</label>
                                         <div class="col-sm-8">
-                                            <select name="price1" id="price1" class="form-control">
+                                            <select name="playTicketPrice" id="price1" class="form-control">
 
                                             </select>
                                         </div>
@@ -213,19 +243,18 @@
                                         <label class="col-sm-3 control-label">状态:</label>
                                         <div class="col-sm-8">
                                             <label>
-                                                <input type="radio" name="status1" value="0"/><span>未上映</span>
-                                                <input type="radio" name="status1" value="1"/><span>已上映</span>
-                                                <input type="radio" name="status1" value="2"/><span>已下映</span>
+                                                <input type="radio" name="playStatus" value="0"/><span>未上映</span>
+                                                <input type="radio" name="playStatus" value="1"/><span>已上映</span>
+                                                <input type="radio" name="playStatus" value="2"/><span>已下映</span>
                                             </label>
                                         </div>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" >保存</button>
+                                    </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="save"
-                                        onclick="save(this)">保存
-                                </button>
-                            </div>
+
                         </div>
                     </div>
                 </div>

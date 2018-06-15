@@ -14,4 +14,9 @@ public class ShowController {
     public String show(@PathVariable String view){
         return "forward:/show"+view;
     }
+
+    @RequestMapping("/show{jsp}")
+    public String showJSP(@PathVariable String jsp){
+        return jsp;
+    }
 }

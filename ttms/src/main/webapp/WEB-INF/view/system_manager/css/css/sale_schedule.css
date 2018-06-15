@@ -1,0 +1,7 @@
+table th:nth-child(5),table th:nth-child(6),table th:nth-child(7){
+    display: none;
+}
+
+tr td:nth-child(5),tr td:nth-child(6),tr td:nth-child(7){
+    display: none;
+}

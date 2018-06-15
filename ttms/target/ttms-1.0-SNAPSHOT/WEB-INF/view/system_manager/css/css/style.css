@@ -48,6 +48,10 @@ div.seatCharts-seat.focused {
 div.seatCharts-seat.selected {
 	background-color: #472B34;
 }
+
+div.seatCharts-seat.sellOut {
+	background-color: #FF0000;
+}
 div.seatCharts-seat.clear {
 	background-color: white;
 }

@@ -22,67 +22,62 @@
     <span>系统管理员</span>
 </div>
 <div class="image">
-    <img src="image/sky.jpg" id="image">
+    <img src="/image/584769807d9c5326!400x400_big.jpg" id="image">
 </div>
-<p class="title1">FZN影院管理系统</p>
+<p class="title1">JerryMouse影院管理系统</p>
 <div class="container">
     <div class="row">
         <div class="col-md-2">
             <ul class="nav nav-pills nav-stacked nav-inverse" id="left">
-                <li role="presentation" class="active"><a href="./employee.html">员工管理</a></li>
-                <li role="presentation"><a href="/show/Studio">演出厅管理</a></li>
-                <li role="presentation"><a href="/show/Seat">座位管理</a></li>
-                <li role="presentation"><a href="/show/User">用户管理</a></li>
-                <li role="presentation"><a href="/show/UserInformation">个人信息</a></li>
+                <li role="presentation" class="active"><a href="showEmployee">员工管理</a></li>
+                <li role="presentation" class="active"><a href="showPlay">剧目管理</a></li>
+                <li role="presentation"><a href="/showStudio">演出厅管理</a></li>
+                <li role="presentation"><a href="/showSchedule">演出计划管理</a></li>
+                <li role="presentation"><a href="/showUser">用户管理</a></li>
+                <li role="presentation"><a href="/showuserInformation">个人信息</a></li>
+                <li role="presentation"><a href="/showData">销售额统计</a></li>
             </ul>
         </div>
         <div class="col-md-offset-4">
-            <div class="box">
-                <table>
-                    <thead>
-                    <tr>
-                        <th style="width:125px;height:0px;"></th>
-                        <th style="width:360px;height:0px;"></th>
-                    </tr>
-                    </thead>
-                    <tbody class="base">
-                    <tr>
-                        <td class="top-line">
-                            <div style="border-radius: 100%;width:100px;height:100px;margin-right: 5px;">
-                                <img src="image/sky.jpg">
-                            </div>
-                        </td>
-                        <td class="top-line">
-                            <a class="btn btn-hollow">
-                                <input  type="file" class="hide">更改头像
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">姓名
-                        </td>
-                        <td><input type="text" placeholder="请输入姓名" id="name"></td>
-                    </tr>
-                    <tr>
-                        <td class="title">电话
-                        </td>
-                        <td><input type="text" placeholder="请输入电话" id="tel"></td>
-                    </tr>
-                    <tr>
-                        <td class="title">住址
-                        </td>
-                        <td><input type="text" placeholder="请输入住址" id="address"></td>
-                    </tr>
-                    <tr>
-                        <td class="title">邮箱
-                        </td>
-                        <td><input type="text" placeholder="请输入邮箱" id="emil"></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <input type="submit" class="btn btn-success setting-save" value="保存" id="btn">
+            <div class="col-md-5">
+                <div class="box">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th style="width:125px;height:0px;"></th>
+                            <th style="width:360px;height:0px;"></th>
+                        </tr>
+                        </thead>
+                        <tbody class="base">
+                        <tr>
+                            <td class="top-line">
+                                <div style="border-radius: 100%;width:100px;height:100px;margin-right: 5px;">
+                                    <img src="/image/584769807d9c5326!400x400_big.jpg">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">姓名
+                            <td><input type="text" placeholder="请输入姓名" id="name" value="${emp.empName}" readonly></td>
+                        </tr>
+                        <tr>
+                            <td class="title">电话
+                            <td><input type="text" placeholder="请输入电话" id="tel" value="${emp.empTelNum}" readonly></td>
+                        </tr>
+                        <tr>
+                            <td class="title">住址
+                            <td><input type="text" placeholder="请输入住址" id="address" value="${emp.empAddr}" readonly></td>
+                        </tr>
+                        <tr>
+                            <td class="title">邮箱
+                            <td><input type="text" placeholder="请输入邮箱" id="emil" value="${emp.empEmail}" readonly> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 <script src="/js/jquery/jq.js"></script>

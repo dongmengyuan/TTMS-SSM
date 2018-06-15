@@ -14,8 +14,9 @@
     <title>login</title>
 </head>
 <body>
+    <h1>${emp.empName}</h1>
     <div class="container">
-        <h1>欢迎使用FZN影院管理系统</h1>
+        <h1>欢迎使用JerryMouse影院管理系统</h1>
         <div id="login">
             <div id="alert"></div>
             <form role="form" method="post" action="/login" onsubmit="return confirm()">

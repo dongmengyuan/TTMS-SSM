@@ -19,6 +19,10 @@ To change this template use File | Settings | File Templates.
     <link rel="stylesheet" href="/css/Bootstrap/bs.css">
     <link rel="stylesheet" href="/css/css/manage.css">
     <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <link href="/css/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="/css/bootstrap-datetimepicker/js/moment-with-locales.min.js"></script>
+    <script src="/css/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <title>schedule</title>
     <style>
         input[type='radio'] {
@@ -32,7 +36,7 @@ To change this template use File | Settings | File Templates.
         }
     </style>
 </head>
-<body>
+<body onload="findType()">
 <div id="header">
     <a href="./login.html" id="link">&nbsp;退出</a>
     <span>经理</span>
@@ -41,18 +45,17 @@ To change this template use File | Settings | File Templates.
     <img src="image/sky.jpg" id="image">
 </div>
 <p class="title">JerryMouse影院管理系统</p>
-<div id="center">
-    <input type="text" class="search" placeholder="search">
-    <button class="fa fa-search"></button>
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-2">
             <ul class="nav nav-pills nav-stacked nav-inverse" id="left">
-                <li role="presentation"><a href="/show/Play">剧目管理</a></li>
-                <li role="presentation"><a href="/show/Schedule">演出计划管理</a></li>
-                <li role="presentation"><a href="/show/Seal">销售额管理</a></li>
-                <li role="presentation"><a href="/show/UserInformation">个人信息</a></li>
+                <li role="presentation" class="active"><a href="showEmployee">员工管理</a></li>
+                <li role="presentation" class="active"><a href="showPlay">剧目管理</a></li>
+                <li role="presentation"><a href="/showStudio">演出厅管理</a></li>
+                <li role="presentation"><a href="/showSchedule">演出计划管理</a></li>
+                <li role="presentation"><a href="/showUser">用户管理</a></li>
+                <li role="presentation"><a href="/showuserInformation">个人信息</a></li>
+                <li role="presentation"><a href="/showData">销售额统计</a></li>
             </ul>
         </div>
         <div class="col-md-offset-2">
@@ -73,8 +76,7 @@ To change this template use File | Settings | File Templates.
                             <td>${schedule.schedId}</td>
                             <td>${schedule.studioId}</td>
                             <td>${schedule.playId}</td>
-                            <td><fmt:formatDate value="${schedule.schedTime}" pattern="yyyy-MM-dd　HH：mm"/></td>
-                            <%--<td>${schedule.schedTime}</td>--%>
+                            <td><fmt:formatDate value="${schedule.schedTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td>${schedule.schedTicketPrice}</td>
                         </tr>
                     </c:forEach>
@@ -102,14 +104,14 @@ To change this template use File | Settings | File Templates.
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">演出厅:</label>
                                         <div class="col-sm-8">
-                                            <select name="stdio" id="studio"  class="form-control">
+                                            <select name="studioId" id="studio"  class="form-control">
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">剧目:</label>
                                         <div class="col-sm-8">
-                                            <select name="stdio" id="play1"  class="form-control">
+                                            <select name="playId" id="play"  class="form-control">
                                             </select>
                                         </div>
                                     </div>
@@ -117,7 +119,7 @@ To change this template use File | Settings | File Templates.
                                         <label class="col-sm-3 control-label">演出时间:</label>
                                         <div class="col-sm-8">
                                             <label>
-                                                <input type="datetime-local" name="time" value="2018-04-28 10:41" id="time"/>
+                                                <input type="text" name="schedTime"  id="time"/>
                                             </label>
                                         </div>
                                     </div>
@@ -125,17 +127,16 @@ To change this template use File | Settings | File Templates.
                                         <label class="col-sm-3 control-label">票价:</label>
                                         <div class="col-sm-8">
                                             <label>
-                                                <input type="datetime-local" name="price" id="price"/>
+                                                <input type="text" name="schedTicketPrice" id="price" class="form-control"/>
                                             </label>
                                         </div>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" >添加</button>
+                                    </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="add"
-                                        onclick="add(this)">添加
-                                </button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -160,7 +161,7 @@ To change this template use File | Settings | File Templates.
                                     <div class="form-group">
                                     <label class="col-sm-3 control-label">演出厅:</label>
                                     <div class="col-sm-8">
-                                        <select name="stdio1" id="stdio1" class="form-control">
+                                        <select name="studioId" id="studio1" class="form-control">
 
                                         </select>
                                     </div>
@@ -168,7 +169,7 @@ To change this template use File | Settings | File Templates.
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">剧目:</label>
                                         <div class="col-sm-8">
-                                            <select name="play" id="play" class="form-control">
+                                            <select name="playId" id="play1" class="form-control">
 
                                             </select>
                                         </div>
@@ -177,28 +178,23 @@ To change this template use File | Settings | File Templates.
                                         <label class="col-sm-3 control-label">演出时间:</label>
                                         <div class="col-sm-8">
                                             <label>
-                                                <input type="datetime-local" name="time1"  id="time1"/>
+                                                <input type="text" name="schedTime"  id="time1"/>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">票价:</label>
                                         <div class="col-sm-8">
-                                            <select name="price1" id="price1" class="form-control">
-                                                <option value="35.00">35.00</option>
-                                                <option value="28.00">28.00</option>
-                                                <option value="32.00">32.00</option>
-                                                <option value="24.00">24.00</option>
-                                            </select>
+                                            <input type="text" name="schedTicketPrice" id="price1" class="form-control"></input>
                                         </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">保存
+                                        </button>
                                     </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true"
-                                        onclick="save(this)">保存
-                                </button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -206,9 +202,38 @@ To change this template use File | Settings | File Templates.
         </div>
     </div>
 </div>
-<script src="/js/jquery/jq.js"></script>
 <script src="/js/jquery/bootstrap.min.js"></script>
 <script src="/js/javascript/schedule.js"></script>
 <script src="/js/javascript/match.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#time').datetimepicker({
+            format: 'YYYY-MM-DD hh:mm:ss',
+            locale: moment.locale('zh-cn')
+        });
+        $('#time1').datetimepicker({
+            format: 'YYYY-MM-DD hh:mm:ss',
+            locale: moment.locale('zh-cn')
+        });
+    });
+    function findType() {
+        $.post("/selectStudio",function(data){
+            for(i=0;i<data.length;i++){
+                $("#studio").append("<option value="+data[i].studioId+">"+data[i].studioName+"</option>");
+                $("#studio1").append("<option value="+data[i].studioId+">"+data[i].studioName+"</option>");
+            }
+        });
+
+
+
+        $.post("/selectPlay",function(data){
+
+            for(i=0;i<data.length;i++){
+                $("#play1").append("<option value="+data[i].playId+">"+data[i].playName+"</option>");
+                $("#play").append("<option value="+data[i].playId+">"+data[i].playName+"</option>");
+            }
+        });
+    }
+</script>
 </body>
 </html></html>

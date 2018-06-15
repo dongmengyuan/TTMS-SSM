@@ -68,25 +68,30 @@ function check(){
 
 
 function model() {
-
+    document.getElementById('id1').value = array.info[0];
     document.getElementById('nam').value = array.info[1];
-    $("#editPtype").val(array.info[2]);
-    $("#editPlang").val(array.info[3]);
 
-    // var type = document.getElementById('type');
-    // console.log(type);
-    // for(var i = 0; i < type.options.length; i++){
-    //     if(type.options[i].innerText == array.info[2]){
-    //         type.selectedIndex = i;
-    //     }
-    // }
-    //
-    // var lang = document.getElementById('language');
-    // for(var n = 0; n < lang.options.length; n++){
-    //     if(lang.options[n].innerText == array.info[3]){
-    //         lang.selectedIndex = n;
-    //     }
-    // }
+
+    if(array.info[2].trim()==="古装剧"){
+        $("#editPtype").val(5);
+    }else if(array.info[2].trim()==="动漫片"){
+        $("#editPtype").val(6);
+    }else if(array.info[2].trim()==="生活剧"){
+        $("#editPtype").val(7);
+    }else if(array.info[2].trim()==="恐怖片"){
+        $("#editPtype").val(8);
+    }else if(array.info[2].trim()==="战争片"){
+        $("#editPtype").val(9);
+    }else{
+        $("#editPtype").val(10);
+    }
+    if(array.info[3].trim()==="国语"){
+        $("#editPlang").val('11');
+    }else{
+        $("#editPlang").val('12');
+    }
+
+
 
     var time = document.getElementById('long1');
     for(var j = 0; j < time.options.length; j++){
@@ -115,9 +120,10 @@ function model() {
 function save() {
     if(check()){
         let info = [];
+        info[0] = document.getElementById('id1').value;
         info[1] = document.getElementById('nam').value;
-        info[2] = document.getElementById('typ').value;
-        info[3] = document.getElementById('lang').value;
+        info[2] = document.getElementById('editPtype').value;
+        info[3] = document.getElementById('editPlang').value;
         info[4] = document.getElementById('long1').value;
         info[5] = document.getElementById('intro1').value;
         info[6] = document.getElementById('price1').value;

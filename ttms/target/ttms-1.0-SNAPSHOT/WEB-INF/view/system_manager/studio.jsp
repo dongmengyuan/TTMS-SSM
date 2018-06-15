@@ -23,20 +23,18 @@
 <div class="image">
     <img src="image/sky.jpg" id="image">
 </div>
-<p class="title">FZN影院管理系统</p>
-<div id="center">
-    <input type="text" class="search" placeholder="search">
-    <button class="fa fa-search"></button>
-</div>
+<p class="title">JerryMouse影院管理系统</p>
 <div class="container">
     <div class="row">
         <div class="col-md-2">
             <ul class="nav nav-pills nav-stacked nav-inverse" id="left">
-                <li role="presentation"><a href="/show/Employee">员工管理</a></li>
-                <li role="presentation"><a href="/show/Studio">演出厅管理</a></li>
-                <li role="presentation"><a href="/show/Seat">座位管理</a></li>
-                <li role="presentation"><a href="/show/User">用户管理</a></li>
-                <li role="presentation"><a href="/show/UserInformation">个人信息</a></li>
+                <li role="presentation" class="active"><a href="showEmployee">员工管理</a></li>
+                <li role="presentation" class="active"><a href="showPlay">剧目管理</a></li>
+                <li role="presentation"><a href="/showStudio">演出厅管理</a></li>
+                <li role="presentation"><a href="/showSchedule">演出计划管理</a></li>
+                <li role="presentation"><a href="/showUser">用户管理</a></li>
+                <li role="presentation"><a href="/showuserInformation">个人信息</a></li>
+                <li role="presentation"><a href="/showData">销售额统计</a></li>
             </ul>
         </div>
         <div class="col-md-offset-2">
@@ -70,6 +68,7 @@
                     </tbody>
                 </table>
                 <div id="btns">
+                    <button class="btn btn-default" onclick="manage()" style="float: right;margin: 5px;">座位管理</button>
                     <button class="btn btn-danger" onclick="dels(this)" style="float: right;margin: 5px;">删除</button>
                     <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float: right;margin: 5px;">添加
                     </button>

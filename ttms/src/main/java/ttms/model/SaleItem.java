@@ -1,5 +1,7 @@
 package ttms.model;
 
+import java.math.BigDecimal;
+
 public class SaleItem {
     private Long saleItemId;
 
@@ -7,7 +9,7 @@ public class SaleItem {
 
     private Long saleId;
 
-    private Double saleItemPrice;
+    private BigDecimal saleItemPrice;
 
     public Long getSaleItemId() {
         return saleItemId;
@@ -33,11 +35,11 @@ public class SaleItem {
         this.saleId = saleId;
     }
 
-    public Double getSaleItemPrice() {
+    public BigDecimal getSaleItemPrice() {
         return saleItemPrice;
     }
 
-    public void setSaleItemPrice(Double saleItemPrice) {
+    public void setSaleItemPrice(BigDecimal saleItemPrice) {
         this.saleItemPrice = saleItemPrice;
     }
 }

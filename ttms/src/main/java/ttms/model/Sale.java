@@ -1,5 +1,6 @@
 package ttms.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Sale {
@@ -9,7 +10,7 @@ public class Sale {
 
     private Date saleTime;
 
-    private Double salePayment;
+    private BigDecimal salePayment;
 
     private Double saleChange;
 
@@ -45,7 +46,7 @@ public class Sale {
         return saleChange;
     }
 
-    public Double getSalePayment() {
+    public BigDecimal getSalePayment() {
         return salePayment;
     }
 
@@ -53,7 +54,7 @@ public class Sale {
         this.saleChange = saleChange;
     }
 
-    public void setSalePayment(Double salePayment) {
+    public void setSalePayment(BigDecimal salePayment) {
         this.salePayment = salePayment;
     }
 
@@ -71,5 +72,8 @@ public class Sale {
 
     public void setSaleStatus(Short saleStatus) {
         this.saleStatus = saleStatus;
+    }
+
+    public void setSaleChange(BigDecimal bigDecimal) {
     }
 }

@@ -11,7 +11,7 @@
 
 
     <!-- 让DispatchServlet启动基于annotation的HandlerMapping -->
-    <mvc:annotation-driven>
+    <mvc:annotation-driven conversion-service="conversionService">
         <mvc:message-converters register-defaults="true">
             <!-- 解决Controller返回json中文乱码问题 -->
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -26,6 +26,14 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
     <mvc:default-servlet-handler/>
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="ttms.model.DateConVert">
+                </bean>
+            </list>
+        </property>
+    </bean>
     <context:component-scan base-package="ttms.controller"/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 真正的页面路径 =  前缀 + 去掉后缀名的页面名称 + 后缀 -->

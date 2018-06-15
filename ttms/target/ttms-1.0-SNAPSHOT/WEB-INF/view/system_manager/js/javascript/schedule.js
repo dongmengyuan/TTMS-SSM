@@ -5,6 +5,8 @@
  * Created by ubuntu on 6/10/18.
  */
 'use strict';
+let array = {};
+
 (function(){
     let num = 12;
     let studio = document.querySelector('#stdio');
@@ -26,8 +28,6 @@
         nam.innerHTML += '<option>' + playArr[j-1] + '</option>';
     }
 })();
-
-let array = {};
 function find() {
     let table = document.getElementById('schedule');
     let length = table.rows[0].cells.length;
@@ -57,8 +57,6 @@ function find() {
         for (let i = 0; i < length; i++) {
             arr[i] = table.rows[num].cells[i].innerHTML;
         }
-
-        array.num = num;
         array.table = table;
         array.n = length;
         array.info = arr;
@@ -81,26 +79,31 @@ function checkAll() {
     }
 }
 function model() {
-    let nam = document.getElementById('nam');
-    console.log(nam);
-    for(let i = 0; i < nam.options.length; i++){
-        if(nam.options[i].innerText == array.info[0]){
-            nam.selectedIndex = i;
-        }
-    }
-    var stdio1 = document.getElementById('stdio1');
-    for(let i = 0; i < stdio1.options.length; i++){
-        if(stdio1.options[i].innerText == array.info[1]){
-            stdio1.selectedIndex = i;
-        }
-    }
-    document.getElementById('time1').value = array.info[2];
-    let price1 = document.getElementById('price1');
-    for(let j = 0; j < price1.options.length; j++){
-        if(price1.options[j].innerText == array.info[3]){
-            price1.selectedIndex = j;
-        }
-    }
+    document.getElementById('nam').value = array.info[0];
+    document.getElementById('studio1').value = array.info[1];
+    document.getElementById('play1').value = array.info[2];
+    document.getElementById('time1').value = array.info[3];
+    document.getElementById('price1').value = array.info[4];
+    // let nam = document.getElementById('nam');
+    // console.log(nam);
+    // for(let i = 0; i < nam.options.length; i++){
+    //     if(nam.options[i].innerText == array.info[0]){
+    //         nam.selectedIndex = i;
+    //     }
+    // }
+    // var stdio1 = document.getElementById('stdio1');
+    // for(let i = 0; i < stdio1.options.length; i++){
+    //     if(stdio1.options[i].innerText == array.info[1]){
+    //         stdio1.selectedIndex = i;
+    //     }
+    // }
+    // document.getElementById('time1').value = array.info[2];
+    // let price1 = document.getElementById('price1');
+    // for(let j = 0; j < price1.options.length; j++){
+    //     if(price1.options[j].innerText == array.info[3]){
+    //         price1.selectedIndex = j;
+    //     }
+    // }
 
 
 }

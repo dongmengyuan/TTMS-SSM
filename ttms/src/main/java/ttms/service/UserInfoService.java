@@ -6,4 +6,5 @@ package ttms.service;
 
 public interface UserInfoService {
 
+
 }
